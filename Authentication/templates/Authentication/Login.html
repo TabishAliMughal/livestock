@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/bootstrap-5/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/fontawesome/css/all.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <section class="h-100 gradient-form" style="background-color: #eee;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-10">
+                    <div class="card rounded-3 text-light bg-dark">
+                        <div class="row align-items-center d-flex">
+                            <div class="col-6 d-none align-items-center d-sm-flex">
+                                <div>
+                                    <img src="{% static '/assets/images/login_background.png' %}" style="width:100%;" alt="logo">
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 d-flex ">
+                                <div class="card-body my-md-5 my-sm-0">
+                                    {% if request.session.login == 'rejected' %}
+                                        <div class="alert alert-danger" role="alert">
+                                            UserID And Password Is Incorrect
+                                        </div>
+                                    {% endif %}
+                                    <form action="{% url 'Auth:login' %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" >Username</label>
+                                            <input name="username" type="text" class="form-control" />
+                                        </div>            
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" >Password</label>
+                                            <input name="password" type="password" class="form-control" />
+                                        </div>            
+                                        <div class="text-center pt-1 mb-5 pb-1">
+                                            <input class="btn btn-primary" type="submit" value="Log In">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+	<script src="{% static 'assets/bootstrap-5/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'assets/fontawesome/js/all.js' %}"></script>
+</html>

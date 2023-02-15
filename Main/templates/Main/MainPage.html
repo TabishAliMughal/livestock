@@ -1,0 +1,128 @@
+{% extends 'BaseTemplate.html' %}
+{% load static %}
+{% block title %}
+
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div id="mainSlider" class="carousel slide d-md-none w-100 m-auto" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for i in animals %}
+                    <div class="carousel-item {% if i.pk == 1 %}active{% endif %}" data-bs-interval="3000">
+                        <img src="{{ i.image }}" class="d-block w-100" alt="...">
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#mainSlider" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#mainSlider" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div id="mainSlider" class="carousel slide d-none d-md-block w-50 m-auto" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for i in animals %}
+                    <div class="carousel-item {% if i.pk == 1 %}active{% endif %}" data-bs-interval="3000">
+                        <img src="{{ i.image }}" class="d-block w-100" alt="...">
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#mainSlider" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#mainSlider" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    
+    <div class="container text-center mt-5 mb-2">
+        <div class="card border border-dark">
+            <div class="card-header bg-dark text-light">
+                <h5>Live Stock</h5>
+            </div>
+            <div class="card-body">
+                <p>Livestock are the domesticated animals raised in an agricultural setting to provide labor and produce diversified products for consumption such as meat, eggs, milk, fur, leather, and wool.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container text-center mt-5 mb-2">
+        <div class="card border border-dark">
+            <div class="card-header bg-dark text-light">
+                <h5>What We Provide</h5>
+            </div>
+            <div class="card-body">
+                <p>
+                    This application helps the farmers to maintain and track their livestock right from when they are born till the time they are sold. It records the details of all the events that an animal goes through by saving all the details. With this system, it becomes easy to keep track of the number of farm animals, their performance and cost metrics and their financial tracking until sales.
+                </p>
+                <h6>FEED MANAGEMENT</h6>
+                <p>
+                        The software works to help the managers to maintain a consistent feeding plan while recording the amount of feed that is consumed by every single animal on the farm. This is an important feature which is of great importance in the feed conversion ratio. Calculating the cost of feed which is being consumed from every single farm becomes possible with the assistance of this feature. Therefore, taking informed decisions that are based on real data becomes possible.
+                </p>
+                <h6>TRACKING THE DATES</h6>
+                <p>
+                    Regulated livestock farming that is practiced with the help of a livestock management software helps in tracking due dates for every single animal. Tracking the estimated calving period contingent on the time when the animals were exposed becomes possible. This is vital information that helps in monitoring the breeding practices that are carried out at the farm to maintain all animals with ease.
+                </p>
+                <h6>EVENT TRACKING</h6>
+                <p>
+
+                    The various events in livestock farming such as animal sale, treatments, breeding events, births, and deaths can be tracked with the help of livestock management software. The software allows recording this important information so as to later compile the series of operations and events carried out on the farm.
+                    
+                    It is a thing of the past when the managers used to stroll around with record book in their hands to take information that used to concern these animals being raised. In case you own a business of livestock farming, at that point, you have no choice however to get rid of the customary technique for maintaining a farm while putting resources into appropriate livestock management software. In addition to making things easier in the business, this software is the best way to make sure maximum productivity, profit, and great efficiency.
+                </p>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container overflow-hidden">
+        <div id="boxSlider" class="overflow-hidden d-flex img-scroll">
+            {% for i in slider %}
+                <div class="d-inline-block border border-danger mx-1 rounded" style="width:300px">
+                    <img class="rounded" style="width:-webkit-fill-available" src="{{ i.image }}" alt="...">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+{% endblock %}
+{% block scripts %}
+<script>
+    const boxSlider = document.getElementById('boxSlider');
+    function nextSlide(x){
+        boxSlider.scroll({
+            left: boxSlider.scrollLeft + x ,//boxSlider.querySelector(".img-scroll").offsetWidth,
+            behavior: 'smooth'
+        });
+    }
+    function prevSlide(x){
+        boxSlider.scroll({
+            left: boxSlider.scrollLeft - x ,//boxSlider.querySelector(".img-scroll").offsetWidth,
+            behavior: 'smooth'
+        });
+    }
+    slide = 0
+    setInterval(function() {
+        if (slide == 0){
+            nextSlide(5);
+        } else {
+            prevSlide(5);
+        }
+        width = parseInt('{{ total_slider }}')*350-730;
+        slider = boxSlider.scrollLeft;
+        if (width == slider){
+            slide = 1
+        } else if (slider == 0){
+            slide = 0
+        }
+    }, 100);
+</script>
+{% endblock %}
