@@ -1,1 +1,1 @@
-web:gunicorn LiveStock.wsgi --log-file -
+web: gunicorn LiveStock.wsgi --log-file -
