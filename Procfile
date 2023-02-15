@@ -1,1 +1,1 @@
-web: gunicorn LiveStock.wsgi --log-file -
+web:python manage.py collectstatic --no-input; gunicorn LiveStock.wsgi --log-file - --log-level debug
