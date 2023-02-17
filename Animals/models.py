@@ -23,7 +23,7 @@ class AnimalTypes(Model):
     type = CharField(max_length=50)
     in_expences = ManyToManyField(AnimalExpences , related_name='in_expences')
     out_expences = ManyToManyField(AnimalExpences , related_name='out_expences')
-    image = FileField(upload_to="./assets/pictures/animals",null=True,blank=True)
+    image = FileField(upload_to="static/pictures/animals/",null=True,blank=True)
     lifespan = IntegerField(null=True)
     def __str__(self):
         return self.type
