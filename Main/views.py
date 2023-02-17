@@ -6,8 +6,11 @@ import random
 
 def MainPage(request):
     animals = AnimalTypes.objects.all()
-    slider = list(MainPageSlider.objects.all())
-    random.shuffle(slider)
+    slider = MainPageSlider.objects.all()
+    slid = []
+    for i in slider:
+        slid.append(i)
+    random.shuffle(slid)
     total_slider = len(slider)
     context = {
         'animals' : animals ,
