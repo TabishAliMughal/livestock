@@ -1,0 +1,54 @@
+{% extends 'Includes/BaseForm.html' %}
+{% load static %}
+{% block page_header %} Add Expence For {{ animal }} {% endblock %}
+{% block form %}
+    <div class="row m-1 align-items-center">
+        <div class="col-12 col-md-4 text-start text-md-end fw-bold">
+            Expence : 
+        </div>
+        <div class="col-12 col-md-8">
+            <select name="product" class="form-select">
+                <option value="">---------</option>
+                {% for i in product %}
+                    <option value="{{ i.pk }}">{{ i }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="row m-1 align-items-center">
+        <div class="col-12 col-md-4 text-start text-md-end fw-bold">
+            Unit : 
+        </div>
+        <div class="col-12 col-md-8">
+            <select name="unit" class="form-select">
+                {% for i in form.unit %}
+                    {{ i }}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="row m-1 align-items-center">
+        <div class="col-12 col-md-4 text-start text-md-end fw-bold">
+            QTY : 
+        </div>
+        <div class="col-12 col-md-8">
+            <input type="number" name="qty" class="form-control">
+        </div>
+    </div>
+    <div class="row m-1 align-items-center">
+        <div class="col-12 col-md-4 text-start text-md-end fw-bold">
+            Date : 
+        </div>
+        <div class="col-12 col-md-8">
+            <input type="date" name="date" class="form-control">
+        </div>
+    </div>
+    <div class="row m-1 align-items-center">
+        <div class="col-12 col-md-4 text-start text-md-end fw-bold">
+            Time : 
+        </div>
+        <div class="col-12 col-md-8">
+            <input type="time" name="time" class="form-control">
+        </div>
+    </div>
+{% endblock %}

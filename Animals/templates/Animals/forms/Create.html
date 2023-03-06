@@ -1,0 +1,41 @@
+{% extends 'Includes/BaseForm.html' %}
+{% load static %}
+{% block page_header %} Add Animal {% endblock %}
+{% block form %}
+    <div class="row m-1 align-items-center">
+        <div class="col-12 col-md-4 text-start text-md-end fw-bold">
+            Type : 
+        </div>
+        <div class="col-12 col-md-8">
+            <select name="type" class="form-select">
+                {% for i in form.type %}
+                    {{ i }}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="row m-1 align-items-center">
+        <div class="col-12 col-md-4 text-start text-md-end fw-bold">
+            Name : 
+        </div>
+        <div class="col-12 col-md-8">
+            <input type="text" name="animal" class="form-control">
+        </div>
+    </div>
+    <div class="row m-1 align-items-center">
+        <div class="col-12 col-md-4 text-start text-md-end fw-bold">
+            Age ( Months ) : 
+        </div>
+        <div class="col-12 col-md-8">
+            <input type="number" name="age" class="form-control">
+        </div>
+    </div>
+    <div class="row m-1 align-items-center">
+        <div class="col-12 col-md-4 text-start text-md-end fw-bold">
+            Image : 
+        </div>
+        <div class="col-12 col-md-8">
+            <input type="file" name="image" class="form-control">
+        </div>
+    </div>
+{% endblock %}

@@ -1,10 +1,5 @@
 {% load static %}
-<div class="navbar navbar-expand-md bg-dark align-items-center border-0 px-5 py-1 mb-2">
-    {% if request.path == "/dashboard/" %}
-        <a class="btn btn-light me-5" data-bs-toggle="offcanvas" href="#sidebarExample" role="button" aria-controls="sidebarExample">
-            <i class="fa fa-list text-dark"></i>
-        </a>
-    {% endif %}
+<div class="navbar navbar-expand-md bg-dark align-items-center border-0 px-5 py-1">
     <div class="navbar-brand wmin-200">
         <a class="d-inline-block bg-light rounded">
             <img style="height:50px;" src="{% static '/images/Logo.png' %}" alt="">
@@ -15,32 +10,22 @@
     </button>
 
     <div class="collapse navbar-collapse" id="topNav">
-        <ul class="navbar-nav me-auto">
+        <ul class="navbar-nav me-auto d-inline-flex">
             <li class="nav-item">
                 <a href="/" class="text-light text-decoration-none fs-4">
                     <span>Home</span>
                 </a>
             </li>
         </ul>
-        <div class="d-flex">
-            {% if request.user.is_authenticated %}
-                <div class="btn-group">
-                    <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-user me-2"></i>{{ request.user.username }}
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end bg-dark border border-light">
-                        <li><a class="dropdown-item bg-dark text-light" href="{% url 'Farm:Dashboard' %}">Dashboard</a></li>
-                        <li><hr class="text-light"></li>
-                        <li><a class="dropdown-item bg-dark text-light" href="{% url 'Auth:logout' %}">Logout</a></li>
-                    </ul>
-                </div>
-            {% else %}
+        {% if request.user.is_authenticated %}
+        {% else %}
+            <div class="d-inline-flex float-end">
                 <li class="nav-item">
                     <a href="{% url 'Auth:login' %}" class="text-light bg-dark text-decoration-none fs-4" data-toggle="dropdown">
                         <span><i class="fa fa-lock me-2" ></i>Login</span>
                     </a>
                 </li>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
     </div>
 </div>

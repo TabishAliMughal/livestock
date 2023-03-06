@@ -1,40 +1,50 @@
-<div class="offcanvas offcanvas-start bg-dark" id="sidebarExample" aria-labelledby="sidebarLabel">
+<div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" >
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="sidebarLabel"></h5>
-        <button type="button" class="btn-close text-reset bg-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+      <button type="button" class="btn-close bg-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <ul class="nav nav-pills flex-column mb-auto collapse show">
+        <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="/" class="nav-link text-light">
-                <span class="d-inline-block" style="width:40px"><i class="fa fa-home text-danger"></i></span>
-                    Home
+                <a href="/" class="nav-link align-items-center d-flex my-2 text-light {% if request.path == '' %} active {% endif %}">
+                    <i class="fa fa-house-chimney fs-4"></i>
+                    <span class="ms-2" style="font-size: 12px;">Home</span>
                 </a>
             </li>
-            <li>
-                <a href="#" class="nav-link text-light">
-                <span class="d-inline-block" style="width:40px"><i class="fa fa-cutlery text-danger"></i></span>
-                    Food
+            <li class="nav-item">
+                <a href="/farm/dashboard" class="nav-link align-items-center d-flex my-2 text-light {% if request.path == '/farm/dashboard/' %} active {% endif %}">
+                    <i class="fa fa-table-columns fs-4"></i>
+                    <span class="ms-2" style="font-size: 12px;">Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="#" class="nav-link text-light">
-                <span class="d-inline-block" style="width:40px"><i class="fa fa-comments text-danger"></i></span>
-                    Feedback
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-light">
-                <span class="d-inline-block" style="width:40px"><i class="fa fa-user-plus text-danger"></i></span>
-                    Registration
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-light">
-                <span class="d-inline-block" style="width:40px"><i class="fa fa-user-clock text-danger"></i></span>
-                    Reservation
-                </a>
-            </li>
+            {% for i in request.session.nav %}
+                <li class="nav-item">
+                    <a href="{% url 'Farm:Animals:List' i.slug %}" class="nav-link align-items-center d-flex my-2 text-light {% if request.path == '/farm/i.slug' %} active {% endif %}">
+                        <i class="fa fa-caret-right fs-4"></i>
+                        <span class="ms-2" style="font-size: 12px;">{{ i.type }}s</span>
+                    </a>
+                </li>
+            {% endfor %}
         </ul>
+    </div>
+    <div class="mb-5 mx-3">
+        {% if request.user.is_authenticated %}
+            <div class="btn-group w-100 dropend">
+                <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-user me-2"></i>{{ request.user.username }}
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item text-dark" href="{% url 'Farm:Dashboard' %}">Dashboard</a></li>
+                    <li><hr></li>
+                    <li><a class="dropdown-item text-dark" href="{% url 'Auth:logout' %}">Logout</a></li>
+                </ul>
+            </div>
+        {% else %}
+            <div>
+                <a href="{% url 'Auth:login' %}" class="text-light bg-dark text-decoration-none fs-4" data-toggle="dropdown">
+                    <span><i class="fa fa-lock me-2" ></i>Login</span>
+                </a>
+            </div>
+        {% endif %}
     </div>
 </div>

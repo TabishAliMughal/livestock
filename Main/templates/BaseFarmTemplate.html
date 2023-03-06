@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="{% static 'bootstrap-5/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'bootstrap-5/css/sidebars.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'custom/css/style.css' %}" rel="stylesheet" type="text/css">
+	<!-- <link href="{% static 'custom/css/mansory.css' %}" rel="stylesheet" type="text/css"> -->
+	<link href="{% static 'fontawesome/css/all.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body class="" style="overflow-y: scroll;overflow-x: hidden;">
+    {% include 'Includes/TopNav.html' %}
+    {% include 'Includes/SideNav.html' %}
+    <div class="container mt-3 mb-3">
+        <div class="text-primary ms-2 mt-2 d-flex align-items-end mb-3">
+            <a class="btn btn-dark" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                <i class="fa fa-bars text-light"></i>
+            </a>
+            <span class="ms-2 fs-3">
+                {% block page_header %}{% endblock %}
+            </span>
+        </div>
+        
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div class="w-100 bottom-0">
+        {% include 'Includes/Footer.html' %}
+    </div>
+</body>
+	<script src="{% static 'bootstrap-5/js/bootstrap.bundle.js' %}"></script>
+	<script src="{% static 'fontawesome/js/all.js' %}"></script>
+    {% block scripts %}
+    {% endblock %}
+</html>

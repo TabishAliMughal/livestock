@@ -1,0 +1,77 @@
+{% extends 'BaseFarmTemplate.html' %}
+{% load static %}
+{% block page_header %}{{ animal.animal }}{% endblock %}
+{% block content %}
+    <table class="table">
+        <tbody>
+            <tr class="align-middle">
+                <th>Name</th>
+                <td>{{ animal.animal }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ animal.age }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img style="width:80px;" src="{% static animal.getImage %}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="card mb-3">
+        <div class="card-header d-flex align-items-center justify-content-between">
+            <h5>Expences</h5>
+            <a href="{% url 'Farm:Animals:AddExpence' animal.pk %}" class="btn btn-dark float-end">Add Expence</a>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-dark">#</th>
+                        <th class="text-dark">Expence</th>
+                        <th class="text-dark">Quantity</th>
+                        <th class="text-dark">Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in expences %}
+                        <tr class="align-middle">
+                            <td></td>
+                            <td>{{ i.expence }}</td>
+                            <td>{{ i.QTY }}</td>
+                            <td>{{ i.date }} {{ i.time }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-header d-flex align-items-center justify-content-between">
+            <h5>Product</h5>
+            <a href="{% url 'Farm:Animals:AddProduct' animal.pk %}" class="btn btn-dark float-end">Add Product</a>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-dark">#</th>
+                        <th class="text-dark">Product</th>
+                        <th class="text-dark">Quantity</th>
+                        <th class="text-dark">Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in products %}
+                        <tr class="align-middle">
+                            <td></td>
+                            <td>{{ i.product }}</td>
+                            <td>{{ i.QTY }}</td>
+                            <td>{{ i.date }} {{ i.time }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

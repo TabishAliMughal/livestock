@@ -1,0 +1,40 @@
+{% extends 'BaseFarmTemplate.html' %}
+{% load static %}
+{% block page_header %}My {{ type }}s{% endblock %}
+{% block content %}
+    {% if type != 'Animal' %}
+        <div class="my-3 text-end">
+            <a href="{% url 'Farm:Animals:CreateAnimalGroup' type.pk %}" class="btn btn-dark">Create Group</a>
+            <a href="{% url 'Farm:Animals:Create' %}" class="btn btn-dark">Add {{ type }}</a>
+        </div>
+    {% endif %}
+    {% if types %}
+        <div class="shadow-lg p-3 my-3 bg-body rounded">
+            {% for i in request.session.nav %}
+                <a href="{% url 'Farm:Animals:List' i.slug %}" class="btn btn-danger">{{ i.type }}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-dark">#</th>
+                <th class="text-dark">Name</th>
+                <th class="text-dark">Image</th>
+                <th class="text-dark">Age</th>
+                <th class="text-dark text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in animals %}
+                <tr class="align-middle">
+                    <td>{{ i.slug }}</td>
+                    <td>{{ i.animal }}</td>
+                    <td><img style="width:80px;" src="{% static i.getImage %}"></td>
+                    <td>{{ i.age }}</td>
+                    <td class="text-center"><a href="{% url 'Farm:Animals:Detail' i.pk %}" class="btn btn-danger">Detail</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

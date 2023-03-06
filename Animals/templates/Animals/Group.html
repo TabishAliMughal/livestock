@@ -1,0 +1,30 @@
+{% extends 'BaseFarmTemplate.html' %}
+{% load static %}
+{% block page_header %}{{ group }}{% endblock %}
+{% block content %}
+    <div class="my-3 text-end">
+        <a href="{% url 'Farm:Animals:BulkExpence' group.pk %}" class="btn btn-dark">Bulk Expence</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-dark">#</th>
+                <th class="text-dark">Name</th>
+                <th class="text-dark d-none d-md-table-cell">Image</th>
+                <th class="text-dark">Age</th>
+                <th class="text-dark text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in animals %}
+                <tr class="align-middle">
+                    <td>{{ i.slug }}</td>
+                    <td>{{ i.animal }}</td>
+                    <td class="d-none d-md-table-cell"><img style="width:80px;" src="{% static i.getImage %}"></td>
+                    <td>{{ i.age }}</td>
+                    <td class="text-center"><a href="{% url 'Farm:Animals:Detail' i.pk %}" class="btn btn-danger">Detail</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

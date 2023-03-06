@@ -13,7 +13,7 @@ def loginUser(request):
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
 			login(request, user)
-			return redirect('Res:dashboard')
+			return redirect('Farm:Dashboard')
 		else:
 			request.session['login'] = 'rejected'
 			return redirect('Auth:login')
@@ -22,7 +22,7 @@ def loginUser(request):
 
 def logoutUser(request):
 	logout(request)
-	return redirect('Main:main')
+	return redirect('Main:Main')
 
 # @admin_only
 # @login_required(login_url='main_login')
