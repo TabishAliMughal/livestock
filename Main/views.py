@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from Animals.models import AnimalTypes
 from Main.models import MainPageSlider
 import random
 
 
 def MainPage(request):
+    if request.user.is_authenticated:
+        return redirect('/farm/dashboard')
     animals = AnimalTypes.objects.all()
     slider = MainPageSlider.objects.all()
     slid = []

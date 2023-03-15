@@ -12,14 +12,20 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/farm/dashboard" class="nav-link align-items-center d-flex my-2 text-light {% if request.path == '/farm/dashboard/' %} active {% endif %}">
+                <a href="{% url 'Farm:Dashboard' %}" class="nav-link align-items-center d-flex my-2 text-light {% if request.path == '/farm/dashboard/' %} active {% endif %}">
                     <i class="fa fa-table-columns fs-4"></i>
                     <span class="ms-2" style="font-size: 12px;">Dashboard</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{% url 'Farm:Animals:List' %}" class="nav-link align-items-center d-flex my-2 text-light {% if request.path == '/farm/animals/list/' %} active {% endif %}">
+                    <i class="fa fa-caret-right fs-4"></i>
+                    <span class="ms-2" style="font-size: 12px;">All Animals</span>
+                </a>
+            </li>
             {% for i in request.session.nav %}
                 <li class="nav-item">
-                    <a href="{% url 'Farm:Animals:List' i.slug %}" class="nav-link align-items-center d-flex my-2 text-light {% if request.path == '/farm/i.slug' %} active {% endif %}">
+                    <a href="{% url 'Farm:Animals:List' i.slug %}" class="nav-link align-items-center d-flex my-2 text-light {% if request.path == '/farm/animals/list/'|add:i.slug|add:'/' %} active {% endif %}">
                         <i class="fa fa-caret-right fs-4"></i>
                         <span class="ms-2" style="font-size: 12px;">{{ i.type }}s</span>
                     </a>

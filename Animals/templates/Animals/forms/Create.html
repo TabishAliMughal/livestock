@@ -1,13 +1,13 @@
 {% extends 'Includes/BaseForm.html' %}
 {% load static %}
-{% block page_header %} Add Animal {% endblock %}
+{% block page_header %} Add {% if type %}{{ type }}{% else %}Animal{% endif %}{% endblock %}
 {% block form %}
     <div class="row m-1 align-items-center">
         <div class="col-12 col-md-4 text-start text-md-end fw-bold">
             Type : 
         </div>
-        <div class="col-12 col-md-8">
-            <select name="type" class="form-select">
+        <div class="col-12 col-md-6">
+            <select name="type" class="form-select" {% if type %}disabled="disabled"{% endif %}>
                 {% for i in form.type %}
                     {{ i }}
                 {% endfor %}
@@ -18,7 +18,7 @@
         <div class="col-12 col-md-4 text-start text-md-end fw-bold">
             Name : 
         </div>
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-6">
             <input type="text" name="animal" class="form-control">
         </div>
     </div>
@@ -26,7 +26,7 @@
         <div class="col-12 col-md-4 text-start text-md-end fw-bold">
             Age ( Months ) : 
         </div>
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-6">
             <input type="number" name="age" class="form-control">
         </div>
     </div>
@@ -34,7 +34,7 @@
         <div class="col-12 col-md-4 text-start text-md-end fw-bold">
             Image : 
         </div>
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-6">
             <input type="file" name="image" class="form-control">
         </div>
     </div>

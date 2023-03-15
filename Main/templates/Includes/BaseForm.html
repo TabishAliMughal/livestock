@@ -1,7 +1,7 @@
 {% extends 'BaseFarmTemplate.html' %}
 {% load static %}
 {% block content %}
-    <div class="w-75 text-center m-auto">
+    <div class="container text-center m-auto">
         <form id="baseForm" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <br>
@@ -9,7 +9,7 @@
             {% endblock %}
             <br>
             <div class="row m-1">
-                <div class="col-12 text-end">
+                <div class="col-12 col-md-10 text-end">
                     <button onclick="history.back()" class="btn btn-light">Cancel</button>
                     <input type="submit" class="btn btn-dark" value="Submit">
                 </div>

@@ -34,16 +34,23 @@ def Detail(request , pk):
     }
     return render(request , 'Animals/Detail.html' , context)
 
-def Create(request):
+def Create(request , type=None):
+    if type:
+        type = AnimalTypes.objects.get(id=type)
     if request.method == 'POST':
         request.POST._mutable = True
         request.POST['farm'] = Farm.objects.get(user = request.user.pk)
+        request.POST['type'] = type or request.POST['type']
         form = AnimalForm(request.POST,request.FILES)
         if form.is_valid:
             form.save()
-        return redirect('Farm:Dashboard')
-    form = AnimalForm()
+        if type:
+            return redirect('Farm:Animals:List',type.slug)
+        else:
+            return redirect('Farm:Animals:List')
+    form = AnimalForm({'type':type})
     context = {
+        'type' : type ,
         'form' : form ,
     }
     return render(request , 'Animals/Forms/Create.html' , context)

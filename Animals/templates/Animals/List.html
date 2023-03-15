@@ -5,7 +5,7 @@
     {% if type != 'Animal' %}
         <div class="my-3 text-end">
             <a href="{% url 'Farm:Animals:CreateAnimalGroup' type.pk %}" class="btn btn-dark">Create Group</a>
-            <a href="{% url 'Farm:Animals:Create' %}" class="btn btn-dark">Add {{ type }}</a>
+            <a href="{% url 'Farm:Animals:Create' type.pk %}" class="btn btn-dark">Add {{ type }}</a>
         </div>
     {% endif %}
     {% if types %}
