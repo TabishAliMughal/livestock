@@ -19,7 +19,6 @@ def Dashboard(request):
     groups = AnimalGroups.objects.filter(farm = farm)
     gallery = [i.getImage() for i in FarmGallery.objects.filter(farm = farm)]
     expences = Animal.objects.filter(farm = farm)
-    print(expences)
     context = {
         'farm' : farm ,
         'groups' : groups ,

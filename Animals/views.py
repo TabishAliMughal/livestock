@@ -82,7 +82,6 @@ def AddProduct(request , pk):
         request.POST['animal'] = animal
         form = AnimalProductForm(request.POST)
         if form.is_valid:
-            print(form)
             form.save()
         return redirect('Farm:Animals:Detail',pk)
     form = AnimalProductForm()
@@ -147,7 +146,6 @@ def BulkExpence(request , pk):
             request.POST['qty'] = int(total_qty)/len(animals)
             form = AnimalExpenceForm(request.POST)
             if form.is_valid:
-                print(form)
                 form.save()
         return redirect('Farm:Animals:AnimalGroup',pk)
     form = AnimalExpenceForm()
