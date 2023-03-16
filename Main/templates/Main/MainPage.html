@@ -116,9 +116,9 @@
         } else {
             prevSlide(5);
         }
-        width = parseInt('{{ total_slider }}')*350-730;
+        width = (boxSlider.scrollWidth)-(boxSlider.offsetWidth);
         slider = boxSlider.scrollLeft;
-        if (width == slider){
+        if (width <= slider){
             slide = 1
         } else if (slider == 0){
             slide = 0
