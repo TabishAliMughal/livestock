@@ -42,12 +42,12 @@
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item text-dark" href="{% url 'Farm:Dashboard' %}">Dashboard</a></li>
                     <li><hr></li>
-                    <li><a class="dropdown-item text-dark" href="{% url 'Auth:logout' %}">Logout</a></li>
+                    <li><a class="dropdown-item text-dark" href="{% url 'Auth:Logout' %}">Logout</a></li>
                 </ul>
             </div>
         {% else %}
             <div>
-                <a href="{% url 'Auth:login' %}" class="text-light bg-dark text-decoration-none fs-4" data-toggle="dropdown">
+                <a href="{% url 'Auth:Login' %}" class="text-light bg-dark text-decoration-none fs-4" data-toggle="dropdown">
                     <span><i class="fa fa-lock me-2" ></i>Login</span>
                 </a>
             </div>

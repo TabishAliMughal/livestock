@@ -6,6 +6,7 @@ from Farm.models import Farm
 
 def List(request , slug=None):
     type = "Animal"
+    groups = AnimalGroups.objects.all()
     types = []
     if slug:
         type = AnimalTypes.objects.get(slug = slug)
@@ -18,6 +19,7 @@ def List(request , slug=None):
         type = AnimalTypes.objects.get(slug = request.session.get('nav')[0]['slug'])
     context = {
         'animals' : animals ,
+        'groups' : groups ,
         'type' : type ,
         'types' : types ,
     }

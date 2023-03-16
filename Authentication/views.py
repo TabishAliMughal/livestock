@@ -1,12 +1,9 @@
-from django.http.response import HttpResponseRedirect
-from django.shortcuts import render, redirect , get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import Group , User
-from .forms import CreateUserForm
 
 def loginUser(request):
 	if request.user.is_authenticated:
-		return redirect('Res:dashboard')
+		return redirect('Farm:Dashboard')
 	if request.method == 'POST':
 		username = request.POST.get('username')
 		password =request.POST.get('password')
@@ -16,7 +13,7 @@ def loginUser(request):
 			return redirect('Farm:Dashboard')
 		else:
 			request.session['login'] = 'rejected'
-			return redirect('Auth:login')
+			return redirect('Auth:Login')
 	else:
 		return render(request, 'Authentication/Login.html')
 

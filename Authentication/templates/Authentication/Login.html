@@ -19,18 +19,18 @@
                     <div class="card rounded-3 text-light bg-dark">
                         <div class="row align-items-center d-flex">
                             <div class="col-6 d-none align-items-center d-sm-flex">
-                                <div>
-                                    <!-- <img src="{% static 'images/login_background.png' %}" style="width:100%;" alt="logo"> -->
+                                <div class="w-100">
+                                    <img src="{% static 'Images/logo.png' %}" style="width:100%;" alt="logo">
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 d-flex ">
                                 <div class="card-body my-md-5 my-sm-0">
                                     {% if request.session.login == 'rejected' %}
                                         <div class="alert alert-danger" role="alert">
-                                            UserID And Password Is Incorrect
+                                            Username And Password Is Incorrect
                                         </div>
                                     {% endif %}
-                                    <form action="{% url 'Auth:login' %}" method="POST">
+                                    <form action="{% url 'Auth:Login' %}" method="POST">
                                         {% csrf_token %}
                                         <div class="form-outline mb-4">
                                             <label class="form-label" >Username</label>
