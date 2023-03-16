@@ -127,6 +127,8 @@ STATIC_URL = '/static/'
 #     os.path.join(BASE_DIR, 'static'),
 # ]
 
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_ROOT = 'static/'
