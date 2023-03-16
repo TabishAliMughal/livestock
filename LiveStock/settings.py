@@ -133,3 +133,8 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_ROOT = 'static/'
+
+
+import mimetypes
+
+mimetypes.add_type("text/css", ".css", True)
